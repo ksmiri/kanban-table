@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/kanban")
-public class kanbanRestController {
+public class KanbanRestController {
 
     private final DeveloppeurService developpeurService;
     private final ColonneService colonneService;
@@ -26,12 +26,16 @@ public class kanbanRestController {
     private final TypeTacheService typeTacheService;
 
     @Autowired
-    public kanbanRestController(DeveloppeurService developpeurService, ColonneService colonneService, TacheService tacheService, TypeTacheService typeTacheService) {
+    public KanbanRestController(DeveloppeurService developpeurService, ColonneService colonneService, TacheService tacheService, TypeTacheService typeTacheService) {
         this.developpeurService = developpeurService;
         this.colonneService = colonneService;
         this.tacheService = tacheService;
         this.typeTacheService = typeTacheService;
     }
+
+    //
+    //##### Web services taches #####
+    //
 
     @GetMapping(value = "/taches", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Tache> tachesGet() {
@@ -45,6 +49,20 @@ public class kanbanRestController {
         return tache;
     }
 
+    @PutMapping(value = "/taches/{id}/{intitule}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Tache mettreAjourTache(@PathVariable Long id, @PathVariable String intitule) {
+        return tacheService.mettreAJourTache(id, intitule);
+    }
+
+    //
+    //##### Web services Développeurs #####
+    //
+
+    @GetMapping(value = "/developpeurs", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Developpeur> developpeursGet() {
+        return developpeurService.recupererDeveloppeurs();
+    }
+
     @PostMapping(value = "/developpeurs/{nomDev}/{prenomDev}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Developpeur ajouterDeveloppeur(@PathVariable String nomDev, @PathVariable String prenomDev) {
         Developpeur developpeur = developpeurService.ajouterDeveloppeur(nomDev, prenomDev);
@@ -56,10 +74,6 @@ public class kanbanRestController {
         return developpeurService.supprimerDeveloppeur(id);
     }
 
-    @PutMapping(value = "/taches/{id}/{intitule}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Tache mettreAjourTache(@PathVariable Long id, @PathVariable String intitule) {
-        return tacheService.mettreAJourTache(id, intitule);
-    }
 
     //@PostConstruct
     public void init() {
