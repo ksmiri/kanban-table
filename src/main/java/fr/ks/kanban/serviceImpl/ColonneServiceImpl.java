@@ -25,6 +25,12 @@ public class ColonneServiceImpl implements ColonneService {
     }
 
     @Override
+    public Colonne ajouterColonne(Colonne colonne) {
+        colonneRepository.save(colonne);
+        return colonne;
+    }
+
+    @Override
     public List<Colonne> recupererColonnes() {
         return colonneRepository.findAll();
     }
@@ -36,5 +42,15 @@ public class ColonneServiceImpl implements ColonneService {
             return col.get();
         }
         return null;
+    }
+
+    @Override
+    public boolean supprimerColonne(Long id) {
+        Colonne colonne = getColById(id);
+        if(!colonne.equals(null)){
+            colonneRepository.delete(colonne);
+            return true;
+        }
+        return false;
     }
 }

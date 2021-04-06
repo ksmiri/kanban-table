@@ -25,6 +25,12 @@ public class TypeTacheServiceImpl implements TypeTacheService {
     }
 
     @Override
+    public TypeTache ajouterTypeTache(TypeTache typeTache) {
+        typeTacheRepository.save(typeTache);
+        return typeTache;
+    }
+
+    @Override
     public List<TypeTache> recupererTypeTaches() {
         return typeTacheRepository.findAll();
     }
@@ -36,5 +42,15 @@ public class TypeTacheServiceImpl implements TypeTacheService {
             return tt.get();
         }
         return null;
+    }
+
+    @Override
+    public boolean supprimerTypeTache(Long id) {
+        TypeTache typeTache = recupererTypeTacheById(id);
+        if(!typeTache.equals(null)){
+            typeTacheRepository.delete(typeTache);
+            return true;
+        }
+        return false;
     }
 }

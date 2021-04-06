@@ -65,8 +65,12 @@ public class KanbanRestController {
 
     @PostMapping(value = "/developpeurs/{nomDev}/{prenomDev}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Developpeur ajouterDeveloppeur(@PathVariable String nomDev, @PathVariable String prenomDev) {
-        Developpeur developpeur = developpeurService.ajouterDeveloppeur(nomDev, prenomDev);
-        return developpeur;
+        return developpeurService.ajouterDeveloppeur(nomDev, prenomDev);
+    }
+
+    @PostMapping(value = "/developpeurs", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Developpeur ajouterDev(@RequestBody Developpeur developpeur) {
+        return developpeurService.ajouterDev(developpeur);
     }
 
     @DeleteMapping(value = "/developpeurs/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -74,7 +78,45 @@ public class KanbanRestController {
         return developpeurService.supprimerDeveloppeur(id);
     }
 
+    //
+    //##### Web services Colonnes #####
+    //
 
+    @GetMapping(value = "/colonnes", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Colonne> colonnesGet() {
+        return colonneService.recupererColonnes();
+    }
+
+    @PostMapping(value = "/colonnes", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Colonne ajouterColonne(@RequestBody Colonne colonne) {
+        return colonneService.ajouterColonne(colonne);
+    }
+
+    @DeleteMapping(value = "/colonnes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean deleteColonne(@PathVariable Long id) {
+        return colonneService.supprimerColonne(id);
+    }
+
+    //
+    //##### Web services Types Taches #####
+    //
+
+    @GetMapping(value = "/typestaches", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<TypeTache> typeTachesGet() {
+        return typeTacheService.recupererTypeTaches();
+    }
+
+    @PostMapping(value = "/typestaches", produces = MediaType.APPLICATION_JSON_VALUE)
+    public TypeTache ajouterTypeTache(@RequestBody TypeTache typeTache) {
+        return typeTacheService.ajouterTypeTache(typeTache);
+    }
+
+    @DeleteMapping(value = "/typestaches/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean deleteTypeTache(@PathVariable Long id) {
+        return typeTacheService.supprimerTypeTache(id);
+    }
+
+    //##########################################################################################
     //@PostConstruct
     public void init() {
         tacheService.effacerTaches();

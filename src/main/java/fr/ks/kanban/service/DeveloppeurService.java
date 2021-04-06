@@ -8,6 +8,8 @@ public interface DeveloppeurService {
 
     public Developpeur ajouterDeveloppeur(String nom, String prenom);
 
+    public Developpeur ajouterDev(Developpeur developpeur);
+
     public List<Developpeur> recupererDeveloppeurs();
 
     public Developpeur getDevById(Long id);

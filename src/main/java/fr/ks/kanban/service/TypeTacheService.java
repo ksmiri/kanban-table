@@ -8,8 +8,12 @@ public interface TypeTacheService {
 
     TypeTache ajouterTypeTache(String libelle, String couleur);
 
+    TypeTache ajouterTypeTache(TypeTache typeTache);
+
     List<TypeTache> recupererTypeTaches();
 
     TypeTache recupererTypeTacheById(Long id);
+
+    public boolean supprimerTypeTache(Long id);
 
 }
