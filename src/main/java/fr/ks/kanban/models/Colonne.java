@@ -1,10 +1,11 @@
 package fr.ks.kanban.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Colonne {
+public class Colonne implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

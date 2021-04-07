@@ -8,7 +8,7 @@ public interface DeveloppeurService {
 
     public Developpeur ajouterDeveloppeur(String nom, String prenom);
 
-    public Developpeur ajouterDev(Developpeur developpeur);
+    public Developpeur ajouterDeveloppeur(Developpeur developpeur);
 
     public List<Developpeur> recupererDeveloppeurs();
 

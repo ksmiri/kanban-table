@@ -5,12 +5,13 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Tache {
+public class Tache implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

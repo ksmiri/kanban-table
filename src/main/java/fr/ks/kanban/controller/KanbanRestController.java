@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -68,9 +69,9 @@ public class KanbanRestController {
         return developpeurService.ajouterDeveloppeur(nomDev, prenomDev);
     }
 
-    @PostMapping(value = "/developpeurs", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Developpeur ajouterDev(@RequestBody Developpeur developpeur) {
-        return developpeurService.ajouterDev(developpeur);
+    @PostMapping(value = "/developpeurs/create", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Developpeur ajouterDeveloppeur(@Valid  @RequestBody Developpeur developpeur) {
+        return developpeurService.ajouterDeveloppeur(developpeur);
     }
 
     @DeleteMapping(value = "/developpeurs/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -87,7 +88,7 @@ public class KanbanRestController {
         return colonneService.recupererColonnes();
     }
 
-    @PostMapping(value = "/colonnes", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/colonnes/create", produces = MediaType.APPLICATION_JSON_VALUE)
     public Colonne ajouterColonne(@RequestBody Colonne colonne) {
         return colonneService.ajouterColonne(colonne);
     }
@@ -106,7 +107,7 @@ public class KanbanRestController {
         return typeTacheService.recupererTypeTaches();
     }
 
-    @PostMapping(value = "/typestaches", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/typestaches/create", produces = MediaType.APPLICATION_JSON_VALUE)
     public TypeTache ajouterTypeTache(@RequestBody TypeTache typeTache) {
         return typeTacheService.ajouterTypeTache(typeTache);
     }

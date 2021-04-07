@@ -25,7 +25,7 @@ public class DeveloppeurServiceImpl implements DeveloppeurService {
     }
 
     @Override
-    public Developpeur ajouterDev(Developpeur developpeur) {
+    public Developpeur ajouterDeveloppeur(Developpeur developpeur) {
         developpeurRepository.save(developpeur);
         return developpeur;
     }
